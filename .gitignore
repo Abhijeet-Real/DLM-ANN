@@ -1,0 +1,8 @@
+.venv/
+Images/
+.vscode/
+*.zip
+*.pyc
+*.pyo
+*.pyd
+__pycache__/

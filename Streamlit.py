@@ -2,7 +2,6 @@ import streamlit as st
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
-import numpy as np
 import time
 from sklearn.metrics import confusion_matrix, classification_report, roc_curve, auc
 from Filter import hyperparameter_filters

@@ -24,7 +24,7 @@ training_time = time.time() - start_time
 st.write("### Model Summary")
 summary_string = []
 model.summary(print_fn=lambda x: summary_string.append(x))
-st.text("\n".join(summary_string))
+st.code("\n".join(summary_string), language="plaintext")
 
 # Display training history
 st.write("### Training History")

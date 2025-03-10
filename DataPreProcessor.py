@@ -50,7 +50,7 @@ class DataPreprocessor:
                  ordinal_features: list = [],                      # Related to __encode
                  ordinal_categories: Optional[list] = None,        # Related to __encode
                  use_one_hot_encoding: bool = False,               # Related to __encode
-                 train_test_split_percentage: int = 20,            # Related to __train_test_split
+                 train_test_split_percentage: int = 20,            # Related to __split_dataframe
                  oversample: bool = False                          # Related to __oversample_data
                  ) -> None:
         """
@@ -244,7 +244,7 @@ class DataPreprocessor:
         # Scale numeric features
         self.__scale()
 
-        self.__train_test_split()
+        self.__split_dataframe()
 
         # Free up space
         self.features_df = None
@@ -777,7 +777,7 @@ class DataPreprocessor:
             return self
 
     # Performs Train Test Splits
-    def __train_test_split(self) -> "DataPreprocessor":
+    def __split_dataframe(self) -> "DataPreprocessor":
         """
         Train Test Splits.
 

@@ -1,8 +1,3 @@
-#================================================================================================
-# Auto Binning of continuoes variables
-#================================================================================================
-
-
 # Importing essential libraries
 
 # Data manipulation and numerical operations
@@ -126,7 +121,7 @@ class DataPreprocessor:
 
         # New DataFrames
         self.features_df: pd.DataFrame = None
-        self.target_df = None
+        self.target_df: pd.DataFrame = None
 
         # Final DataFrames
         self.X_train: pd.DataFrame = None

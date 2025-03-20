@@ -2,7 +2,7 @@ import pandas as pd
 from DataPreProcessor import DataPreprocessor
 from model import build_ann, train_model  # Assuming model.py contains ANN functions
 
-def load_and_train_model(DATASET_FILE: str, hyperparams: dict):
+def load_and_train_model(DATASET_FILE: str, target_variable: str, hyperparams: dict) -> tuple:
     """
     Loads the dataset, preprocesses it, and trains an ANN model using given hyperparameters.
     
@@ -21,7 +21,7 @@ def load_and_train_model(DATASET_FILE: str, hyperparams: dict):
     # Initialize Data Preprocessor
     preprocessor = DataPreprocessor(
         dataframe=df,
-        target_variable="num",  # Assuming 'num' is the target column
+        target_variable=target_variable,  # Assuming 'num' is the target column
         train_test_split_percentage=hyperparams.get("train_test_split", 80)
     )
     
@@ -59,4 +59,4 @@ def load_and_train_model(DATASET_FILE: str, hyperparams: dict):
         early_stopping=hyperparams.get("early_stopping", True)
     )
     
-    return model, history
+    return model, history, X_test, y_test

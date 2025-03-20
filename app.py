@@ -2,10 +2,8 @@ import streamlit as st
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
-import time
 from sklearn.metrics import confusion_matrix, classification_report, roc_curve, auc
 from Filter import hyperparameter_filters
-from DataPreProcessor import DataPreprocessor
 from Connector import load_and_train_model
 
 st.set_page_config(page_title="Heart Disease ANN Dashboard", layout="wide")
@@ -15,10 +13,8 @@ st.title("Heart Disease Prediction with ANN 🏥")
 # Get hyperparameter selections from sidebar
 hyperparams = hyperparameter_filters()
 
-# Track training time
-start_time = time.time()
-model, history = load_and_train_model("heart_disease_uci.csv", hyperparams)
-training_time = time.time() - start_time
+# Load dataset and train model
+model, history, X_test, y_test = load_and_train_model("heart_disease_uci.csv", "num", hyperparams)
 
 # Display model summary
 st.write("### Model Summary")
@@ -35,13 +31,9 @@ st.line_chart(history_df)
 
 # Load test dataset for evaluation
 st.write("### Model Evaluation")
-preprocessor = DataPreprocessor(pd.read_csv("heart_disease_uci.csv"), target_variable="num")
-X_train, X_test, y_train, y_test = preprocessor.pre_process()
 
-# Track testing time
-start_test_time = time.time()
+# Get model predictions
 y_pred = model.predict(X_test)
-testing_time = time.time() - start_test_time
 
 # Convert predictions to binary format
 y_pred_binary = (y_pred > 0.5).astype(int)
@@ -76,8 +68,3 @@ ax_roc.set_ylabel("True Positive Rate")
 ax_roc.set_title("Receiver Operating Characteristic (ROC) Curve")
 ax_roc.legend(loc="lower right")
 st.pyplot(fig_roc)
-
-# Display training & testing time
-st.write("### Training & Testing Time")
-st.write(f"**Training Time:** {training_time:.2f} seconds")
-st.write(f"**Testing Time:** {testing_time:.2f} seconds")

@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 from sklearn.metrics import confusion_matrix, classification_report, roc_curve, auc
 from Filter import hyperparameter_filters
 from Connector import load_and_train_model
+from ModelSummary import model_summary_to_df
 
 st.set_page_config(page_title="Heart Disease ANN Dashboard", layout="wide")
 
@@ -19,7 +20,7 @@ model, history, X_test, y_test = load_and_train_model("heart_disease_uci.csv", "
 # Display model summary
 st.write("### Model Summary")
 summary_string = []
-model.summary(print_fn=lambda x: summary_string.append(x))
+model.summary(print_fn=lambda x: summary_string.append(x), line_length=1000)
 st.code("\n".join(summary_string), language="plaintext")
 
 # Display training history

@@ -1,5 +1,5 @@
 import pandas as pd
-from DataPreProcessor import DataPreprocessor
+import GeeseTools as gt
 from model import build_ann, train_model  # Assuming model.py contains ANN functions
 
 def load_and_train_model(DATASET_FILE: str, target_variable: str, hyperparams: dict) -> tuple:
@@ -19,14 +19,14 @@ def load_and_train_model(DATASET_FILE: str, target_variable: str, hyperparams: d
     df = pd.read_csv(DATASET_FILE)
     
     # Initialize Data Preprocessor
-    preprocessor = DataPreprocessor(
+    obj = gt(
         dataframe=df,
-        target_variable=target_variable,  # Assuming 'num' is the target column
-        train_test_split_percentage=hyperparams.get("train_test_split", 80)
+        target_variable=target_variable,
+        # train_test_split_percentage=hyperparams.get("train_test_split", 80)
     )
     
     # Perform preprocessing
-    X_train, X_test, y_train, y_test = preprocessor.pre_process()
+    X_train, X_test, y_train, y_test = obj.pre_process()
     
     # Build ANN Model
     model = build_ann(

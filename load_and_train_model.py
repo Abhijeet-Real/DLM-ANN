@@ -2,7 +2,7 @@ import pandas as pd
 import GeeseTools as gt
 from model import build_ann, train_model 
 
-def load_and_train_model(DATASET_FILE: str, hyperparams: dict):
+def load_and_train_model(DATASET_FILE: str, target_variable: str, hyperparams: dict) -> tuple:
     """
     Loads the dataset, preprocesses it, and trains an ANN model using given hyperparameters.
     
@@ -19,14 +19,14 @@ def load_and_train_model(DATASET_FILE: str, hyperparams: dict):
     df = pd.read_csv(DATASET_FILE)
     
     # Initialize Data Preprocessor
-    preprocessor = DataPreprocessor(
+    obj = gt(
         dataframe=df,
-        target_variable="num",  # Assuming 'num' is the target column
-        train_test_split_percentage=hyperparams.get("train_test_split", 80)
+        target_variable=target_variable,
+        # train_test_split_percentage=hyperparams.get("train_test_split", 80)
     )
     
     # Perform preprocessing
-    X_train, X_test, y_train, y_test = preprocessor.pre_process()
+    X_train, X_test, y_train, y_test = obj.pre_process()
     
     # Build ANN Model
     model = build_ann(
@@ -59,4 +59,4 @@ def load_and_train_model(DATASET_FILE: str, hyperparams: dict):
         early_stopping=hyperparams.get("early_stopping", True)
     )
     
-    return model, history
+    return model, history, X_test, y_test

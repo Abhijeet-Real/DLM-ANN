@@ -3,9 +3,9 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 from sklearn.metrics import confusion_matrix, classification_report, roc_curve, auc
-from Filter import hyperparameter_filters
-from Connector import load_and_train_model
-from ModelSummary import model_summary_to_df
+from filter_side_bar import hyperparameter_filters
+from load_and_train_model import load_and_train_model
+from model_summary import model_summary_to_df
 
 st.set_page_config(page_title="Heart Disease ANN Dashboard", layout="wide")
 

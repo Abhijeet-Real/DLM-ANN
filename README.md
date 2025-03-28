@@ -6,13 +6,12 @@ This project focuses on **hyperparameter tuning** for an **Artificial Neural Net
 ## 📂 Project Structure
 ```
 📦 Heart Disease ANN
-├── 📜 streamlit.py          # Main Streamlit dashboard for visualization
-├── 📜 Filter.py             # Sidebar filters for hyperparameter tuning
-├── 📜 DataPreProcessor.py   # Handles data preprocessing
-├── 📜 Connector.py          # Loads data and trains the model
-├── 📜 model.py              # Builds and trains the ANN model
-├── 📜 heart_disease_uci.csv # Dataset used for prediction
-└── 📜 README.md             # Project documentation (this file)
+├── 📜 streamlit.py                     # Main Streamlit dashboard for visualization
+├── 📜 filter.py                        # Sidebar filters for hyperparameter tuning
+├── 📜 load_and_train_model.py          # Loads data and trains the model
+├── 📜 model.py                         # Builds and trains the ANN model
+├── 📜 heart_disease_uci.csv            # Dataset used for prediction
+└── 📜 README.md                        # Project documentation (this file)
 ```
 
 ## 📝 Dataset Information

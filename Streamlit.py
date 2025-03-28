@@ -5,8 +5,8 @@ import matplotlib.pyplot as plt
 import time
 from sklearn.metrics import confusion_matrix, classification_report, roc_curve, auc
 from Filter import hyperparameter_filters
-from DataPreProcessor import DataPreprocessor
 from Connector import load_and_train_model
+from ModelSummary import model_summary_to_df
 
 st.set_page_config(page_title="Heart Disease ANN Dashboard", layout="wide")
 

@@ -1,6 +1,6 @@
 import pandas as pd
-from DataPreProcessor import DataPreprocessor
-from model import build_ann, train_model  # Assuming model.py contains ANN functions
+import GeeseTools as gt
+from model import build_ann, train_model 
 
 def load_and_train_model(DATASET_FILE: str, hyperparams: dict):
     """

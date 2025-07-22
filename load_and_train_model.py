@@ -1,5 +1,5 @@
 import pandas as pd
-import GeeseTools as gt
+from GeeseTools import DataPreProcessor as dpp
 from model import build_ann, train_model 
 
 def load_and_train_model(DATASET_FILE: str, target_variable: str, hyperparams: dict) -> tuple:
@@ -19,10 +19,9 @@ def load_and_train_model(DATASET_FILE: str, target_variable: str, hyperparams: d
     df = pd.read_csv(DATASET_FILE)
     
     # Initialize Data Preprocessor
-    obj = gt(
+    obj = dpp(
         dataframe=df,
-        target_variable=target_variable,
-        # train_test_split_percentage=hyperparams.get("train_test_split", 80)
+        target=target_variable,
     )
     
     # Perform preprocessing
